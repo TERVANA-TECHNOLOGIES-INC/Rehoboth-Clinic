@@ -1,379 +1,2923 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rehoboth Clinic Your Place of Rest and Recovery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ══════════════════════════════════════
+   RESET & TOKENS
+══════════════════════════════════════ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Rehoboth Clinic - Your Place of Rest and Recovery</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-        .material-symbols-outlined {
-            font-family: 'Material Symbols Outlined';
-            font-weight: normal;
-            font-style: normal;
-            font-size: 24px;
-            line-height: 1;
-            letter-spacing: normal;
-            text-transform: none;
-            display: inline-block;
-            white-space: nowrap;
-            word-wrap: normal;
-            direction: ltr;
-            -webkit-font-feature-settings: 'liga';
-            -webkit-font-smoothing: antialiased;
+      :root {
+        --blue: #1a6bb5;
+        --blue-dark: #0e4a82;
+        --blue-light: #ebf4fd;
+        --green: #7db55a;
+        --green-dark: #527a3a;
+        --slate: #2f3e52;
+        --ink: #141c26;
+        --muted: #596779;
+        --soft: #94a3b8;
+        --border: #dde6f0;
+        --bg: #f7f9fc;
+        --white: #ffffff;
+
+        --font-display: "Cormorant", Georgia, serif;
+        --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 24px;
+        --radius-xl: 36px;
+
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background: var(--white);
+        color: var(--ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ══════════════════════════════════════
+   UTILITY
+══════════════════════════════════════ */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 48px;
         }
+      }
+      @media (min-width: 1280px) {
+        .container {
+          padding: 0 32px;
+        }
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--blue);
+      }
+      .tag::before {
+        content: "";
+        display: inline-block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--blue);
+        border-radius: 2px;
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        font-weight: 500;
+        line-height: 1.15;
+        color: var(--ink);
+      }
+      .section-title em {
+        font-style: italic;
+        color: var(--blue);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        border-radius: 100px;
+        padding: 14px 28px;
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.25s var(--ease),
+          background 0.2s;
+      }
+      .btn-primary {
+        background: var(--blue);
+        color: var(--white);
+        box-shadow: 0 4px 20px rgba(26, 107, 181, 0.28);
+      }
+      .btn-primary:hover {
+        background: var(--blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(26, 107, 181, 0.38);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--ink);
+        border: 1.5px solid var(--border);
+      }
+      .btn-ghost:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+        transform: translateY(-2px);
+      }
+      .btn-arrow::after {
+        content: "→";
+        font-size: 15px;
+        transition: transform 0.2s var(--ease);
+      }
+      .btn-arrow:hover::after {
+        transform: translateX(4px);
+      }
+
+      /* ══════════════════════════════════════
+   EMERGENCY POPUP
+══════════════════════════════════════ */
+      .emergency-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(20, 28, 38, 0.55);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        animation: fadeOverlay 0.3s 0.4s var(--ease) forwards;
+      }
+      @keyframes fadeOverlay {
+        to {
+          opacity: 1;
+        }
+      }
+      .emergency-overlay.hide {
+        animation: none;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .emergency-modal {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        padding: 40px 36px 36px;
+        max-width: 460px;
+        width: 100%;
+        position: relative;
+        box-shadow: 0 32px 80px rgba(20, 28, 38, 0.22);
+        transform: translateY(16px);
+        animation: slideModal 0.35s 0.45s var(--ease) forwards;
+        opacity: 0;
+      }
+      @keyframes slideModal {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .emergency-modal-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: #fef2f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+      .emergency-modal h2 {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 10px;
+        line-height: 1.2;
+      }
+      .emergency-modal p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.72;
+        margin-bottom: 24px;
+      }
+      .emergency-modal-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .emergency-call-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: #c0392b;
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        padding: 14px 24px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        letter-spacing: 0.02em;
+      }
+      .emergency-call-btn:hover {
+        background: #a93226;
+        transform: translateY(-1px);
+      }
+
+      .emergency-links-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--blue-light);
+        color: var(--blue);
+        border: none;
+        border-radius: 100px;
+        padding: 14px 24px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+        letter-spacing: 0.02em;
+      }
+      .emergency-links-btn:hover {
+        background: #d3e9f7;
+        transform: translateY(-1px);
+      }
+
+      .emergency-dismiss {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--soft);
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font-body);
+        transition: color 0.2s;
+      }
+      .emergency-dismiss:hover {
+        color: var(--muted);
+      }
+
+      .emergency-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        background: var(--bg);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--muted);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .emergency-close:hover {
+        background: var(--border);
+        color: var(--ink);
+      }
+
+      /* ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ */
+      .nav-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+      }
+
+      .nav {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid rgba(221, 230, 240, 0.7);
+        transition: box-shadow 0.3s;
+      }
+      .nav.scrolled {
+        box-shadow: 0 2px 32px rgba(20, 28, 38, 0.08);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+      }
+
+      /* Logo */
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      .nav-logo img {
+        height: 44px;
+        width: auto;
+      }
+      .nav-logo-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .nav-logo-text strong {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--slate);
+        white-space: nowrap;
+      }
+      .nav-logo-text span {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--blue);
+      }
+
+      /* Desktop links */
+      .nav-links {
+        display: none;
+        list-style: none;
+        gap: 36px;
+        align-items: center;
+      }
+      @media (min-width: 900px) {
+        .nav-links {
+          display: flex;
+        }
+      }
+
+      .nav-links a {
+        font-size: 13.5px;
+        font-weight: 500;
+        color: var(--muted);
+        position: relative;
+        padding-bottom: 3px;
+        transition: color 0.2s;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--blue);
+        transition: width 0.25s var(--ease);
+      }
+      .nav-links a:hover {
+        color: var(--blue);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Nav right */
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .lang-switcher {
+        display: none;
+        align-items: center;
+        gap: 0;
+        border: 1.5px solid var(--border);
+        border-radius: 100px;
+        overflow: hidden;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+      @media (min-width: 600px) {
+        .lang-switcher {
+          display: flex;
+        }
+      }
+
+      .lang-switcher button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px 13px;
+        color: var(--muted);
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .lang-switcher button.active {
+        background: var(--blue);
+        color: var(--white);
+      }
+
+      .btn-book {
+        background: var(--blue);
+        color: var(--white);
+        border: none;
+        border-radius: 100px;
+        padding: 11px 22px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(26, 107, 181, 0.28);
+        transition:
+          background 0.2s,
+          transform 0.2s,
+          box-shadow 0.2s;
+        white-space: nowrap;
+      }
+      .btn-book:hover {
+        background: var(--blue-dark);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 22px rgba(26, 107, 181, 0.38);
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        align-items: center;
+        transition: border-color 0.2s;
+        flex-shrink: 0;
+      }
+      @media (min-width: 900px) {
+        .hamburger {
+          display: none;
+        }
+      }
+      .hamburger:hover {
+        border-color: var(--blue);
+      }
+      .hamburger span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition:
+          transform 0.3s var(--ease),
+          opacity 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      /* Mobile drawer */
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 998;
+        background: var(--white);
+        padding: 24px;
+        flex-direction: column;
+        gap: 0;
+        overflow-y: auto;
+      }
+      .mobile-nav.open {
+        display: flex;
+      }
+
+      .mobile-nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 0 28px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 16px;
+      }
+      .mobile-nav-logo img {
+        height: 36px;
+      }
+      .mobile-nav-logo strong {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--slate);
+      }
+
+      .mobile-nav a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--ink);
+        transition: color 0.2s;
+      }
+      .mobile-nav a:hover {
+        color: var(--blue);
+      }
+      .mobile-nav a::after {
+        content: "→";
+        color: var(--soft);
+        font-size: 1.1rem;
+      }
+
+      .mobile-nav-footer {
+        margin-top: auto;
+        padding-top: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .mobile-nav-footer .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 16px;
+        font-size: 14px;
+      }
+      .mobile-lang {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding-top: 16px;
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .mobile-lang button {
+        background: none;
+        border: 1.5px solid var(--border);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-family: var(--font-body);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        color: var(--muted);
+        transition: all 0.2s;
+      }
+      .mobile-lang button.active {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: var(--white);
+      }
+
+      /* Background shape */
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        right: -200px;
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(26, 107, 181, 0.06) 0%,
+          rgba(125, 181, 90, 0.04) 50%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 56px;
+        align-items: center;
+      }
+      @media (min-width: 960px) {
+        .hero-inner {
+          grid-template-columns: 1fr 1fr;
+          gap: 72px;
+        }
+      }
+
+      /* Hero content */
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--blue-light);
+        border: 1px solid rgba(26, 107, 181, 0.15);
+        border-radius: 100px;
+        padding: 8px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--blue);
+        letter-spacing: 0.04em;
+        margin-bottom: 24px;
+      }
+      .pulse {
+        width: 8px;
+        height: 8px;
+        background: var(--green);
+        border-radius: 50%;
+        flex-shrink: 0;
+        animation: pulse-anim 2s infinite;
+      }
+      @keyframes pulse-anim {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(125, 181, 90, 0.5);
+        }
+        60% {
+          box-shadow: 0 0 0 7px rgba(125, 181, 90, 0);
+        }
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 6vw, 5.2rem);
+        font-weight: 400;
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        margin-bottom: 22px;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: var(--blue);
+      }
+      .hero-title strong {
+        font-weight: 600;
+      }
+
+      .hero-desc {
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: var(--muted);
+        max-width: 440px;
+        line-height: 1.78;
+        margin-bottom: 40px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 52px;
+      }
+
+      .hero-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .trust-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--blue-light);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .trust-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+        line-height: 1.3;
+      }
+
+      /* Hero visual */
+      .hero-visual {
+        position: relative;
+      }
+      .hero-image-card {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        background: linear-gradient(145deg, #daeaf8, #e8f5dd);
+        aspect-ratio: 5 / 6;
+        position: relative;
+        box-shadow:
+          0 0 0 1px rgba(26, 107, 181, 0.08),
+          0 32px 80px rgba(14, 74, 130, 0.14);
+      }
+      .hero-image-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        color: var(--soft);
+        font-size: 14px;
+        font-style: italic;
+      }
+      .hero-image-placeholder svg {
+        opacity: 0.25;
+      }
+
+      /* Floating status card */
+      .hero-float {
+        position: absolute;
+        background: var(--white);
+        border-radius: var(--radius-md);
+        box-shadow: 0 12px 48px rgba(20, 28, 38, 0.14);
+        border: 1px solid var(--border);
+        padding: 16px 20px;
+      }
+      .hero-float-tl {
+        bottom: 32px;
+        left: -32px;
+        min-width: 188px;
+      }
+      @media (max-width: 959px) {
+        .hero-float-tl {
+          left: 16px;
+        }
+      }
+      .hf-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .hf-avatar {
+        width: 40px;
+        height: 40px;
+        background: var(--blue-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .hf-label {
+        font-size: 11px;
+        color: var(--soft);
+        font-weight: 500;
+      }
+      .hf-value {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .hf-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+        background: #ecfce7;
+        border-radius: 100px;
+        padding: 5px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--green-dark);
+        letter-spacing: 0.04em;
+      }
+      .hf-pill-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--green);
+        border-radius: 50%;
+      }
+
+      /* ══════════════════════════════════════
+   INFO BAR
+══════════════════════════════════════ */
+      .info-bar {
+        background: var(--slate);
+        padding: 28px 0;
+      }
+      .info-bar-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex: 1;
+        min-width: 180px;
+      }
+      .info-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        flex-shrink: 0;
+      }
+      .info-text-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 3px;
+      }
+      .info-text-value {
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.45;
+      }
+      .info-divider {
+        width: 1px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        flex-shrink: 0;
+        display: none;
+      }
+      @media (min-width: 640px) {
+        .info-divider {
+          display: block;
+        }
+      }
+
+      /* ══════════════════════════════════════
+   SECTION WRAPPER
+══════════════════════════════════════ */
+      .section {
+        padding: 96px 0;
+      }
+      .section-bg {
+        background: var(--bg);
+      }
+
+      .section-header {
+        margin-bottom: 60px;
+      }
+      .section-header.center {
+        text-align: center;
+      }
+      .section-header.center .section-desc {
+        margin: 14px auto 0;
+      }
+      .section-desc {
+        font-size: 1rem;
+        color: var(--muted);
+        max-width: 500px;
+        line-height: 1.75;
+        margin-top: 14px;
+        font-weight: 400;
+      }
+
+      /* ══════════════════════════════════════
+   SERVICES
+══════════════════════════════════════ */
+      .services-header-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 28px;
+        margin-bottom: 48px;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      @media (min-width: 640px) {
+        .services-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .service-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        padding: 36px 32px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.3s var(--ease),
+          box-shadow 0.3s var(--ease),
+          border-color 0.3s;
+        cursor: default;
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 56px rgba(26, 107, 181, 0.1);
+        border-color: rgba(26, 107, 181, 0.2);
+      }
+      .service-card-line {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue), var(--green));
+        transition: right 0.4s var(--ease);
+      }
+      .service-card:hover .service-card-line {
+        right: 0;
+      }
+
+      .service-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 24px;
+      }
+      .ic-a {
+        background: var(--blue-light);
+      }
+      .ic-b {
+        background: #edf6e6;
+      }
+      .ic-c {
+        background: #f0eefc;
+      }
+
+      .service-num {
+        position: absolute;
+        top: 20px;
+        right: 24px;
+        font-family: var(--font-display);
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--border);
+        user-select: none;
+        transition: color 0.3s;
+      }
+      .service-card:hover .service-num {
+        color: rgba(26, 107, 181, 0.07);
+      }
+
+      .service-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.55rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 12px;
+        line-height: 1.2;
+      }
+      .service-card p {
+        font-size: 14.5px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      /* ══════════════════════════════════════
+   WHY US
+══════════════════════════════════════ */
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      @media (min-width: 900px) {
+        .why-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .why-image-wrap {
+        position: relative;
+      }
+      .why-image {
+        border-radius: var(--radius-xl);
+        background: linear-gradient(135deg, var(--blue-light), #e8f5dd);
+        aspect-ratio: 4/5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--soft);
+        font-size: 14px;
+        font-style: italic;
+        box-shadow: 0 24px 72px rgba(26, 107, 181, 0.1);
+      }
+      .why-stat-card {
+        position: absolute;
+        bottom: -24px;
+        right: -20px;
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        padding: 22px 28px;
+        box-shadow: 0 16px 56px rgba(20, 28, 38, 0.12);
+        border: 1px solid var(--border);
+      }
+      @media (max-width: 900px) {
+        .why-stat-card {
+          right: 12px;
+        }
+      }
+      .why-stat-num {
+        font-family: var(--font-display);
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: var(--blue);
+        line-height: 1;
+      }
+      .why-stat-label {
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-top: 4px;
+        line-height: 1.45;
+      }
+
+      .why-points {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        margin-top: 40px;
+      }
+      .why-point {
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        padding: 20px;
+        border-radius: var(--radius-md);
+        border: 1px solid transparent;
+        transition:
+          background 0.25s,
+          border-color 0.25s;
+      }
+      .why-point:hover {
+        background: var(--bg);
+        border-color: var(--border);
+      }
+      .why-point-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--blue-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+        transition: background 0.25s;
+      }
+      .why-point:hover .why-point-icon {
+        background: var(--blue);
+      }
+      .why-point h4 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+      .why-point p {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* ══════════════════════════════════════
+   TEAM
+══════════════════════════════════════ */
+      .team-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      @media (min-width: 640px) {
+        .team-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .doctor-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        transition:
+          transform 0.3s var(--ease),
+          box-shadow 0.3s var(--ease);
+      }
+      .doctor-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(26, 107, 181, 0.1);
+      }
+      .doctor-photo {
+        background: linear-gradient(145deg, #d4e9f7, #daefc9);
+        aspect-ratio: 4/3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .doctor-photo-ph {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--soft);
+        font-size: 13px;
+        font-style: italic;
+        opacity: 0.8;
+      }
+      .doctor-photo-ph span {
+        font-size: 3rem;
+        opacity: 0.35;
+      }
+
+      .doctor-badge {
+        position: absolute;
+        bottom: 14px;
+        left: 14px;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        border-radius: 100px;
+        padding: 5px 14px;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .doctor-body {
+        padding: 26px 28px 30px;
+      }
+      .doctor-body h3 {
+        font-family: var(--font-display);
+        font-size: 1.65rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 4px;
+      }
+      .doctor-cred {
+        font-size: 11.5px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .doctor-body p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+      .doctor-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chip {
+        background: var(--blue-light);
+        color: var(--blue);
+        border-radius: 6px;
+        padding: 5px 12px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+      }
+
+      /* ══════════════════════════════════════
+   HOW TO BOOK
+══════════════════════════════════════ */
+      .steps-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        margin-top: 52px;
+      }
+      @media (min-width: 640px) {
+        .steps-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .step-block {
+        padding: 44px 36px;
+        border-bottom: 1px solid var(--border);
+        transition: background 0.25s var(--ease);
+        position: relative;
+      }
+      @media (min-width: 640px) {
+        .step-block {
+          border-bottom: none;
+          border-right: 1px solid var(--border);
+        }
+        .step-block:last-child {
+          border-right: none;
+        }
+      }
+      .step-block:last-child {
+        border-bottom: none;
+      }
+      .step-block:hover {
+        background: var(--blue-light);
+      }
+
+      .step-number {
+        font-family: var(--font-display);
+        font-size: 4.5rem;
+        font-weight: 700;
+        color: var(--border);
+        line-height: 1;
+        margin-bottom: 20px;
+        transition: color 0.25s;
+      }
+      .step-block:hover .step-number {
+        color: rgba(26, 107, 181, 0.15);
+      }
+
+      .step-block h4 {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 10px;
+      }
+      .step-block p {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .book-cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 24px;
+        margin-top: 44px;
+      }
+      .book-note {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .book-note strong {
+        color: var(--ink);
+      }
+
+      /* ══════════════════════════════════════
+   RESOURCES
+══════════════════════════════════════ */
+      .resources-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 52px;
+      }
+      @media (min-width: 640px) {
+        .resources-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1024px) {
+        .resources-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .res-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition:
+          border-color 0.25s,
+          transform 0.25s var(--ease),
+          box-shadow 0.25s;
+      }
+      .res-card:hover {
+        border-color: rgba(26, 107, 181, 0.3);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 32px rgba(26, 107, 181, 0.08);
+      }
+      .res-emoji {
+        font-size: 1.8rem;
+      }
+      .res-card h4 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .res-card p {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.65;
+        flex: 1;
+      }
+      .res-link {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 6px;
+        transition: gap 0.2s;
+      }
+      .res-link:hover {
+        gap: 9px;
+      }
+
+      /* ══════════════════════════════════════
+   CONTACT CTA
+══════════════════════════════════════ */
+      .contact-section {
+        background: var(--ink);
+        padding: 96px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-section::before {
+        content: "";
+        position: absolute;
+        top: -180px;
+        right: -180px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(26, 107, 181, 0.18),
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .contact-section::after {
+        content: "";
+        position: absolute;
+        bottom: -140px;
+        left: -100px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(125, 181, 90, 0.08),
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .contact-inner {
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-section .tag {
+        color: var(--green);
+      }
+      .contact-section .tag::before {
+        background: var(--green);
+      }
+      .contact-section .section-title {
+        color: var(--white);
+        margin-top: 14px;
+      }
+      .contact-section .section-desc {
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 480px;
+        margin-top: 14px;
+        margin-bottom: 52px;
+      }
+
+      .contact-tiles {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 44px;
+      }
+      @media (min-width: 640px) {
+        .contact-tiles {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1024px) {
+        .contact-tiles {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .contact-tile {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-md);
+        padding: 20px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        transition: background 0.2s;
+      }
+      .contact-tile:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .contact-tile-icon {
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .contact-tile-label {
+        display: block;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.38);
+        margin-bottom: 3px;
+      }
+      .contact-tile-val {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.88);
+        line-height: 1.45;
+      }
+
+      .btn-contact {
+        background: var(--white);
+        color: var(--ink);
+        border: none;
+        border-radius: 100px;
+        padding: 15px 32px;
+        font-family: var(--font-body);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        cursor: pointer;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.25s;
+        display: inline-block;
+      }
+      .btn-contact:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+      }
+
+      /* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+      footer {
+        background: #0e1620;
+        padding: 60px 0 28px;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1fr;
+        gap: 48px;
+        padding-bottom: 48px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        margin-bottom: 28px;
+      }
+      @media (max-width: 860px) {
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px;
+        }
+      }
+      @media (max-width: 520px) {
+        .footer-top {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+      }
+
+      .footer-brand-logo {
+        height: 40px;
+        filter: brightness(0) invert(1) opacity(0.65);
+        margin-bottom: 16px;
+        display: block;
+      }
+      .footer-brand p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.38);
+        line-height: 1.72;
+        max-width: 260px;
+      }
+      .footer-col-title {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        margin-bottom: 18px;
+      }
+      .footer-col a {
+        display: block;
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 12px;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover {
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12.5px;
+        color: rgba(255, 255, 255, 0.25);
+      }
+      .footer-bottom a {
+        color: rgba(255, 255, 255, 0.25);
+        transition: color 0.2s;
+      }
+      .footer-bottom a:hover {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .footer-bottom-links {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* ══════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════ */
+      .sr {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .sr.in {
+        opacity: 1;
+        transform: none;
+      }
+      .sr-d1 {
+        transition-delay: 0.08s;
+      }
+      .sr-d2 {
+        transition-delay: 0.18s;
+      }
+      .sr-d3 {
+        transition-delay: 0.28s;
+      }
+      .sr-d4 {
+        transition-delay: 0.38s;
+      }
+
+      /* ══════════════════════════════════════
+   RESPONSIVE TWEAKS
+══════════════════════════════════════ */
+      .hero {
+        padding-top: calc(72px + 56px);
+        padding-bottom: 80px;
+        position: relative;
+        overflow: hidden;
+        background: var(--white);
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding-top: calc(72px + 32px);
+          padding-bottom: 56px;
+        }
+        .section {
+          padding: 64px 0;
+        }
+        .hero-float-tl {
+          display: none;
+        }
+        .nav-logo-text span {
+          display: none;
+        }
+        .btn-book {
+          padding: 10px 16px;
+          font-size: 12px;
+        }
+      }
     </style>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface": "#f8f9fa",
-                        "primary-fixed": "#d3e4ff",
-                        "primary": "#005292",
-                        "tertiary-container": "#427522",
-                        "surface-bright": "#f8f9fa",
-                        "on-primary-fixed-variant": "#004881",
-                        "surface-container-low": "#f3f4f5",
-                        "secondary-fixed": "#d2e4fd",
-                        "inverse-primary": "#a2c9ff",
-                        "on-secondary-fixed": "#0a1d2f",
-                        "outline-variant": "#c1c7d3",
-                        "surface-container-highest": "#e1e3e4",
-                        "on-tertiary-container": "#befa96",
-                        "on-secondary-container": "#55667b",
-                        "outline": "#717782",
-                        "secondary-container": "#d2e4fd",
-                        "on-error-container": "#93000a",
-                        "on-primary-fixed": "#001c38",
-                        "surface-variant": "#e1e3e4",
-                        "primary-fixed-dim": "#a2c9ff",
-                        "error": "#ba1a1a",
-                        "on-tertiary-fixed-variant": "#215100",
-                        "error-container": "#ffdad6",
-                        "on-primary-container": "#deeaff",
-                        "inverse-on-surface": "#f0f1f2",
-                        "inverse-surface": "#2e3132",
-                        "primary-container": "#1a6bb5",
-                        "on-error": "#ffffff",
-                        "secondary-fixed-dim": "#b6c8e0",
-                        "surface-tint": "#0060a9",
-                        "on-background": "#191c1d",
-                        "on-tertiary-fixed": "#092100",
-                        "on-primary": "#ffffff",
-                        "on-secondary-fixed-variant": "#37485c",
-                        "surface-container-lowest": "#ffffff",
-                        "tertiary-fixed-dim": "#9cd677",
-                        "on-surface-variant": "#414751",
-                        "on-tertiary": "#ffffff",
-                        "tertiary": "#2a5c08",
-                        "surface-dim": "#d9dadb",
-                        "background": "#f8f9fa",
-                        "surface-container-high": "#e7e8e9",
-                        "secondary": "#4f6074",
-                        "tertiary-fixed": "#b7f390",
-                        "surface-container": "#edeeef",
-                        "on-secondary": "#ffffff",
-                        "on-surface": "#191c1d"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "xs": "4px",
-                        "gutter": "24px",
-                        "sm": "12px",
-                        "md": "24px",
-                        "xl": "80px",
-                        "margin-mobile": "16px",
-                        "margin-desktop": "64px",
-                        "lg": "48px",
-                        "base": "8px"
-                    },
-                    "fontFamily": {
-                        "body-sm": [
-                            "DM Sans"
-                        ],
-                        "headline-sm": [
-                            "Playfair Display"
-                        ],
-                        "display-lg-mobile": [
-                            "Playfair Display"
-                        ],
-                        "label-caps": [
-                            "DM Sans"
-                        ],
-                        "label-bold": [
-                            "DM Sans"
-                        ],
-                        "body-lg": [
-                            "DM Sans"
-                        ],
-                        "headline-md": [
-                            "Playfair Display"
-                        ],
-                        "body-md": [
-                            "DM Sans"
-                        ],
-                        "display-lg": [
-                            "Playfair Display"
-                        ]
-                    },
-                    "fontSize": {
-                        "body-sm": [
-                            "14px",
-                            {
-                                "lineHeight": "1.5",
-                                "fontWeight": "400"
-                            }
-                        ],
-                        "headline-sm": [
-                            "24px",
-                            {
-                                "lineHeight": "1.4",
-                                "fontWeight": "600"
-                            }
-                        ],
-                        "display-lg-mobile": [
-                            "32px",
-                            {
-                                "lineHeight": "1.2",
-                                "fontWeight": "700"
-                            }
-                        ],
-                        "label-caps": [
-                            "12px",
-                            {
-                                "lineHeight": "1.0",
-                                "letterSpacing": "0.1em",
-                                "fontWeight": "600"
-                            }
-                        ],
-                        "label-bold": [
-                            "14px",
-                            {
-                                "lineHeight": "1.0",
-                                "letterSpacing": "0.05em",
-                                "fontWeight": "700"
-                            }
-                        ],
-                        "body-lg": [
-                            "18px",
-                            {
-                                "lineHeight": "1.6",
-                                "fontWeight": "400"
-                            }
-                        ],
-                        "headline-md": [
-                            "32px",
-                            {
-                                "lineHeight": "1.3",
-                                "fontWeight": "600"
-                            }
-                        ],
-                        "body-md": [
-                            "16px",
-                            {
-                                "lineHeight": "1.6",
-                                "fontWeight": "400"
-                            }
-                        ],
-                        "display-lg": [
-                            "48px",
-                            {
-                                "lineHeight": "1.2",
-                                "letterSpacing": "-0.02em",
-                                "fontWeight": "700"
-                            }
-                        ]
-                    }
-                },
-            },
-        }
-    </script>
-</head>
-<body class="bg-surface text-on-surface font-body-md antialiased pt-[120px]">
-<!-- 1. Top Emergency Bar -->
-<div class="fixed top-0 w-full z-[60] bg-[#C94C4C] text-white py-xs px-margin-mobile md:px-margin-desktop text-center font-body-sm flex justify-center items-center gap-base">
-<span class="material-symbols-outlined text-[16px]">warning</span>
-<p>Medical Emergency? Call 911 immediately or visit your nearest Emergency Room. | Health Links 24/7: 1-888-315-9257</p>
-</div>
-<!-- 2. Sticky Nav (TopAppBar) -->
-<header class="fixed top-[32px] w-full z-50 bg-surface/90 dark:bg-surface-container/90 backdrop-blur-md border-b border-outline-variant/10 shadow-sm transition-all duration-300">
-<div class="flex justify-between items-center max-w-7xl mx-auto px-6 md:px-16 h-20">
-<div class="flex items-center gap-md">
-<img alt="Rehoboth Clinic Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGDrj-BpOLxV9TX_5TxikaaInxrgBLwO4DMR5VJsbNe7sw79HFpVaTqUdlBMS0VP-NFRkXrJVWiRNhj1G8zVpr-TiYs15wOe7pn2XNnCWcoCRMfb36RnGzBe_RRcHcOvI6Hy8nB6-pVk9xQ1mDzcjVlLNFlI3ZJwO7UU1t7N_Bp5XP9e1ZJiE1pJ4GuYmr65vN9svU2HqKUroCfqeky1yIWzRjIfXSzIsx8kv5Vi36mn90IlzxqqwHX_OiRvZEcfL20KbP1aSIeA"/>
-<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary hidden lg:block">Rehoboth Clinic</div>
-</div>
-<!-- Web Navigation -->
-<nav class="hidden md:flex items-center gap-gutter">
-<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a>
-<a class="text-secondary dark:text-secondary-fixed hover:text-primary font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Services</a>
-<a class="text-secondary dark:text-secondary-fixed hover:text-primary font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Our Team</a>
-<a class="text-secondary dark:text-secondary-fixed hover:text-primary font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Resources</a>
-<a class="text-secondary dark:text-secondary-fixed hover:text-primary font-body-md text-body-md hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contact</a>
-</nav>
-<div class="flex items-center gap-md">
-<button class="hidden lg:flex items-center gap-xs text-secondary hover:text-primary font-label-bold text-label-bold transition-colors">
-<span>FR / EN</span>
-</button>
-<button class="bg-primary text-white font-label-bold text-label-bold px-md py-sm rounded-full hover:bg-primary-container transition-colors shadow-sm hover:shadow-md">
-                    Book Now
-                </button>
-</div>
-</div>
-</header>
-<main>
-<!-- 3. Hero Section -->
-<section class="relative pt-xl pb-xl px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
-<div class="flex flex-col items-start gap-md z-10">
-<div class="inline-flex items-center gap-xs bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full font-label-bold text-label-bold">
-<span class="material-symbols-outlined text-[16px]">verified</span>
-                    Now Accepting New Patients
+  </head>
+  <body>
+    <!-- ── EMERGENCY POPUP ── -->
+    <div
+      class="emergency-overlay"
+      id="emergencyOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="emergency-title"
+    >
+      <div class="emergency-modal">
+        <button class="emergency-close" id="emergencyClose" aria-label="Close">
+          ✕
+        </button>
+        <div class="emergency-modal-icon">🚨</div>
+        <h2 id="emergency-title">Medical Emergency?</h2>
+        <p>
+          If you or someone around you is experiencing a medical emergency, do
+          not wait. Call <strong>911</strong> immediately or go to your nearest
+          Emergency Room.<br /><br />For non-emergency medical advice available
+          24 hours a day, contact Health Links.
+        </p>
+        <div class="emergency-modal-actions">
+          <a href="tel:911" class="emergency-call-btn"
+            >📞 &nbsp;Call 911 Emergency</a
+          >
+          <a href="tel:18883159257" class="emergency-links-btn"
+            >💬 &nbsp;Health Links 24/7 &nbsp;·&nbsp; 1‑888‑315‑9257</a
+          >
+        </div>
+        <button class="emergency-dismiss" id="emergencyDismiss">
+          I understand continue to the website
+        </button>
+      </div>
+    </div>
+
+    <!-- ── NAV ── -->
+    <div class="nav-wrapper" id="navWrapper">
+      <nav class="nav" id="mainNav">
+        <div class="container">
+          <div class="nav-inner">
+            <!-- Logo -->
+            <a href="#" class="nav-logo" aria-label="Rehoboth Clinic – Home">
+              <div class="nav-logo-text">
+                <strong>Rehoboth Clinic</strong>
+                <span data-i18n="nav-tagline">Winnipeg, Manitoba</span>
+              </div>
+            </a>
+
+            <!-- Desktop links -->
+            <ul class="nav-links" role="list">
+              <li><a href="#services" data-i18n="nav-services">Services</a></li>
+              <li><a href="#team" data-i18n="nav-team">Our Team</a></li>
+              <li>
+                <a href="#book" data-i18n="nav-appointments">Appointments</a>
+              </li>
+              <li>
+                <a href="#resources" data-i18n="nav-resources">Resources</a>
+              </li>
+              <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+            </ul>
+
+            <!-- Right actions -->
+            <div class="nav-right">
+              <div class="lang-switcher" role="group" aria-label="Language">
+                <button class="active" onclick="setLang(this)">EN</button>
+                <button onclick="setLang(this)">FR</button>
+              </div>
+              <button class="btn-book" id="bookBtn" data-i18n="nav-book">
+                Book Now
+              </button>
+              <button
+                class="hamburger"
+                id="hamburger"
+                aria-label="Open menu"
+                aria-expanded="false"
+              >
+                <span></span><span></span><span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- ── MOBILE DRAWER ── -->
+    <div
+      class="mobile-nav"
+      id="mobileNav"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation menu"
+    >
+      <div class="mobile-nav-logo">
+        <strong>Rehoboth Clinic</strong>
+      </div>
+      <a href="#services" onclick="closeMenu()" data-i18n="nav-services"
+        >Services</a
+      >
+      <a href="#team" onclick="closeMenu()" data-i18n="nav-team">Our Team</a>
+      <a href="#book" onclick="closeMenu()" data-i18n="nav-appointments"
+        >Appointments</a
+      >
+      <a href="#resources" onclick="closeMenu()" data-i18n="nav-resources"
+        >Resources</a
+      >
+      <a href="#contact" onclick="closeMenu()" data-i18n="nav-contact"
+        >Contact</a
+      >
+      <div class="mobile-nav-footer">
+        <button
+          class="btn btn-primary btn-arrow"
+          onclick="closeMenu()"
+          data-i18n="hero-btn-book"
+        >
+          Book an Appointment
+        </button>
+        <div class="mobile-lang">
+          <span>Language:</span>
+          <button class="active" onclick="setLang(this)">EN</button>
+          <button onclick="setLang(this)">FR</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HERO ── -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-inner">
+          <!-- Content -->
+          <div>
+            <div class="hero-badge sr" data-i18n="hero-badge">
+              <span class="pulse"></span>
+              Now Accepting New Patients
+            </div>
+
+            <h1
+              class="hero-title sr sr-d1"
+              id="hero-heading"
+              data-i18n="hero-title"
+            >
+              Your Place of<br />
+              <em>Rest</em> and<br />
+              <strong>Recovery</strong>
+            </h1>
+
+            <p class="hero-desc sr sr-d2" data-i18n="hero-desc">
+              Compassionate, patient-centred care for individuals and families
+              across Winnipeg, Manitoba. Walk-in and family medicine services
+              all covered by Manitoba Health.
+            </p>
+
+            <div class="hero-actions sr sr-d3">
+              <button
+                class="btn btn-primary btn-arrow"
+                data-i18n="hero-btn-book"
+              >
+                Book an Appointment
+              </button>
+              <a
+                href="#services"
+                class="btn btn-ghost"
+                data-i18n="hero-btn-services"
+                >Our Services</a
+              >
+            </div>
+
+            <div class="hero-trust sr sr-d4">
+              <div class="trust-item">
+                <div class="trust-icon">🩺</div>
+                <div class="trust-label" data-i18n="trust-physicians">
+                  2 Dedicated<br />Physicians
                 </div>
-<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface">Your Place of Rest and Recovery</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
-                    Providing compassionate, comprehensive medical care to the Winnipeg community. We are dedicated to your health journey in a welcoming environment.
-                </p>
-<div class="flex flex-wrap gap-sm mt-sm">
-<button class="bg-primary text-white font-label-bold text-label-bold px-md py-sm rounded-full hover:bg-primary-container transition-colors shadow-sm hover:shadow-md">
-                        Book an Appointment
-                    </button>
-<button class="bg-surface-container-high text-on-surface font-label-bold text-label-bold px-md py-sm rounded-full hover:bg-surface-variant transition-colors border border-outline/20">
-                        Our Services
-                    </button>
-</div>
-<div class="flex flex-wrap gap-md mt-lg pt-md border-t border-outline-variant/30 w-full">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-tertiary">stethoscope</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">2 Dedicated Physicians</span>
-</div>
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-tertiary">health_and_safety</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">MB Health Card Accepted</span>
-</div>
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-tertiary">translate</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">EN/FR Bilingual Care</span>
-</div>
-</div>
-</div>
-<div class="relative w-full h-[400px] lg:h-[600px] rounded-xl overflow-hidden shadow-sm">
-<img alt="Rehoboth Clinic Interior" class="w-full h-full object-cover" data-alt="A modern, brightly lit medical clinic reception area in Winnipeg, Manitoba. The environment feels welcoming and serene, utilizing light grey surfaces and soft ambient lighting to create a calm atmosphere. Professional yet approachable, adhering to a clean, clinical aesthetic without feeling sterile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp2HC1RSaHl5Rex3fO0iLRIA6hZ_su1r3SeHhw7t_dNrfbeKd5OCO0cC_AVFGgljOtJAQMrd1e5MLitmd4t5-KAI31Wk7Uy7D54mwE2tAB8WZ7dyiaOlshlPkcWlBwvllBhHJKK79hXN6qz9oJs2m5U9nDRNQn_lm6ijvx5jAI_ZnTnT66sLWRoZosljR7N-4vFXBWeg-sYA1Z_4rKco_snNOM4wkzbF244Us28SFLpD09bxQtv0Ppf5UZsANbOcN7OEKbfcFKuw"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-md">
-<p class="text-white font-headline-sm text-headline-sm">Located in Winnipeg, MB</p>
-</div>
-</div>
-</section>
-<!-- 4. Quick Info Bar (Dark Slate) -->
-<section class="bg-[#2C3E50] text-white py-lg px-margin-mobile md:px-margin-desktop">
-<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="flex flex-col gap-xs">
-<div class="flex items-center gap-sm text-inverse-primary mb-xs">
-<span class="material-symbols-outlined">location_on</span>
-<span class="font-label-caps text-label-caps">LOCATION</span>
-</div>
-<p class="font-body-md text-body-md">123 Health Ave, Suite 100<br/>Winnipeg, MB R3C 1A1</p>
-</div>
-<div class="flex flex-col gap-xs">
-<div class="flex items-center gap-sm text-inverse-primary mb-xs">
-<span class="material-symbols-outlined">schedule</span>
-<span class="font-label-caps text-label-caps">HOURS</span>
-</div>
-<p class="font-body-md text-body-md">Mon - Fri: 8:00 AM - 6:00 PM<br/>Sat - Sun: Closed</p>
-</div>
-<div class="flex flex-col gap-xs">
-<div class="flex items-center gap-sm text-inverse-primary mb-xs">
-<span class="material-symbols-outlined">call</span>
-<span class="font-label-caps text-label-caps">CONTACT</span>
-</div>
-<p class="font-body-md text-body-md">Phone: (204) 555-0199<br/>Fax: (204) 555-0198</p>
-<div class="flex items-center gap-xs mt-sm text-tertiary-fixed">
-<span class="material-symbols-outlined text-[16px]">credit_card</span>
-<span class="font-label-bold text-label-bold">MB Health Card Required</span>
-</div>
-</div>
-</div>
-</section>
-<!-- 5. Services Snapshot -->
-<section class="py-xl px-margin-mobile md:px-margin-desktop bg-surface-container-lowest">
-<div class="max-w-7xl mx-auto">
-<div class="text-center mb-xl">
-<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">Our Medical Services</h2>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Comprehensive healthcare tailored to your family's needs in Winnipeg.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Service Card 1 -->
-<div class="bg-white border border-[#2C3E50]/10 rounded-xl p-md hover:shadow-sm transition-shadow group">
-<div class="bg-primary-fixed w-12 h-12 rounded-full flex items-center justify-center mb-md group-hover:bg-primary-container transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-white">directions_walk</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm">Walk-in Clinic</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-md h-24">Convenient access for urgent, non-life-threatening medical issues. No appointment necessary for walk-in patients.</p>
-<a class="inline-flex items-center gap-xs text-primary font-label-bold text-label-bold hover:underline" href="#">
-                            Learn More <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-<!-- Service Card 2 -->
-<div class="bg-white border border-[#2C3E50]/10 rounded-xl p-md hover:shadow-sm transition-shadow group">
-<div class="bg-primary-fixed w-12 h-12 rounded-full flex items-center justify-center mb-md group-hover:bg-primary-container transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-white">family_restroom</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm">Family Medicine</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-md h-24">Ongoing, comprehensive healthcare for individuals and families across all ages, genders, and diseases.</p>
-<a class="inline-flex items-center gap-xs text-primary font-label-bold text-label-bold hover:underline" href="#">
-                            Learn More <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-<!-- Service Card 3 -->
-<div class="bg-white border border-[#2C3E50]/10 rounded-xl p-md hover:shadow-sm transition-shadow group">
-<div class="bg-primary-fixed w-12 h-12 rounded-full flex items-center justify-center mb-md group-hover:bg-primary-container transition-colors">
-<span class="material-symbols-outlined text-primary group-hover:text-white">medical_services</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm">General Practice</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-md h-24">Routine check-ups, preventative care, and management of chronic health conditions by our experienced physicians.</p>
-<a class="inline-flex items-center gap-xs text-primary font-label-bold text-label-bold hover:underline" href="#">
-                            Learn More <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-</a>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-surface-container-low dark:bg-surface-container-highest w-full py-12">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-7xl mx-auto px-6 md:px-16 mb-xl">
-<div class="flex flex-col gap-sm">
-<div class="font-headline-sm text-headline-sm text-primary mb-sm">Rehoboth Clinic</div>
-<p class="font-body-sm text-body-sm text-on-surface dark:text-on-surface-variant">Your Place of Rest and Recovery in Winnipeg, Manitoba.</p>
-</div>
-<div class="flex flex-col gap-sm">
-<span class="font-label-bold text-label-bold text-on-surface">Quick Links</span>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Privacy Policy</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Terms of Service</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Patient Portal</a>
-<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed underline transition-colors" href="#">Careers</a>
-</div>
-<div class="flex flex-col gap-sm">
-<span class="font-label-bold text-label-bold text-on-surface">Contact</span>
-<p class="font-body-sm text-body-sm text-on-surface-variant">123 Health Ave<br/>Winnipeg, MB</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">(204) 555-0199</p>
-</div>
-<div class="flex flex-col gap-sm">
-<span class="font-label-bold text-label-bold text-on-surface">Language</span>
-<button class="text-left font-body-sm text-body-sm text-primary hover:underline">Français</button>
-</div>
-</div>
-<div class="bg-surface-container-lowest dark:bg-surface-dim py-md px-6 md:px-16 text-center border-t border-outline-variant/20">
-<p class="font-body-sm text-body-sm text-on-surface dark:text-on-surface-variant">© 2024 Rehoboth Clinic. Your Place of Rest and Recovery.</p>
-</div>
-</footer>
-</body></html>
+              </div>
+              <div class="trust-item">
+                <div class="trust-icon">💳</div>
+                <div class="trust-label" data-i18n="trust-health">
+                  MB Health Card<br />Accepted
+                </div>
+              </div>
+              <div class="trust-item">
+                <div class="trust-icon">🌐</div>
+                <div class="trust-label" data-i18n="trust-bilingual">
+                  EN / FR<br />Bilingual Care
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual -->
+          <div class="hero-visual sr sr-d2">
+            <div class="hero-image-card">
+              <div class="hero-image-placeholder">
+                <svg
+                  width="56"
+                  height="56"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="1"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="3" />
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M6 21v-1a6 6 0 0 1 12 0v1" />
+                </svg>
+                Clinic photo goes here
+              </div>
+            </div>
+
+            <!-- Floating card -->
+            <div class="hero-float hero-float-tl" aria-hidden="true">
+              <div class="hf-row">
+                <div class="hf-avatar">👩‍⚕️</div>
+                <div>
+                  <div class="hf-label" data-i18n="hf-label">
+                    Walk-in Clinic
+                  </div>
+                  <div class="hf-value" data-i18n="hf-value">
+                    No appointment needed
+                  </div>
+                </div>
+              </div>
+              <div class="hf-pill">
+                <span class="hf-pill-dot"></span>
+                <span data-i18n="hf-pill">Open Today</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INFO BAR ── -->
+    <div class="info-bar" role="complementary" aria-label="Clinic quick info">
+      <div class="container">
+        <div class="info-bar-inner">
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <div class="info-text-label" data-i18n="info-location-lbl">
+                Location
+              </div>
+              <div class="info-text-value" data-i18n="info-location-val">
+                123 Lorem Street<br />Winnipeg, MB
+              </div>
+            </div>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <div class="info-text-label" data-i18n="info-phone-lbl">
+                Phone
+              </div>
+              <div class="info-text-value" data-i18n="info-phone-val">
+                (204) 555‑0100
+              </div>
+            </div>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <div class="info-icon">🕒</div>
+            <div>
+              <div class="info-text-label" data-i18n="info-hours-lbl">
+                Hours
+              </div>
+              <div class="info-text-value" data-i18n="info-hours-val">
+                Mon – Fri: 8 am – 6 pm<br />Sat: 9 am – 2 pm
+              </div>
+            </div>
+          </div>
+          <div class="info-divider"></div>
+          <div class="info-item">
+            <div class="info-icon">💳</div>
+            <div>
+              <div class="info-text-label" data-i18n="info-coverage-lbl">
+                Coverage
+              </div>
+              <div class="info-text-value" data-i18n="info-coverage-val">
+                Manitoba Health Card<br />(MHSCP) Accepted
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SERVICES ── -->
+    <section
+      class="section section-bg"
+      id="services"
+      aria-labelledby="services-heading"
+    >
+      <div class="container">
+        <div class="services-header-row">
+          <div>
+            <span class="tag sr" data-i18n="sec-services-tag"
+              >What We Offer</span
+            >
+            <h2
+              class="section-title sr sr-d1"
+              id="services-heading"
+              data-i18n="sec-services-title"
+            >
+              Comprehensive care,<br /><em>close to home</em>
+            </h2>
+          </div>
+          <p
+            class="section-desc sr sr-d2"
+            style="max-width: 320px; margin-top: 0"
+            data-i18n="sec-services-desc"
+          >
+            From same-day walk-in visits to long-term family medicine we're here
+            for every stage of your health journey.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card sr">
+            <div class="service-card-line"></div>
+            <div class="service-num" aria-hidden="true">01</div>
+            <div class="service-icon ic-a">🚶</div>
+            <h3 data-i18n="svc1-title">Walk-in Clinic</h3>
+            <p data-i18n="svc1-desc">
+              No appointment required. Prompt, quality care for non-emergency
+              conditions including colds, infections, minor injuries, and acute
+              illness during clinic hours.
+            </p>
+          </div>
+          <div class="service-card sr sr-d1">
+            <div class="service-card-line"></div>
+            <div class="service-num" aria-hidden="true">02</div>
+            <div class="service-icon ic-b">👨‍👩‍👧</div>
+            <h3 data-i18n="svc2-title">Family Medicine</h3>
+            <p data-i18n="svc2-desc">
+              Build a long-term relationship with your own physician.
+              Continuous, comprehensive care for your whole family from newborns
+              to seniors.
+            </p>
+          </div>
+          <div class="service-card sr sr-d2">
+            <div class="service-card-line"></div>
+            <div class="service-num" aria-hidden="true">03</div>
+            <div class="service-icon ic-c">🩺</div>
+            <h3 data-i18n="svc3-title">General Practice</h3>
+            <p data-i18n="svc3-desc">
+              Preventive check-ups, chronic disease management, prescription
+              renewals, lab referrals, and specialist coordination all in one
+              place.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHY US ── -->
+    <section class="section" id="why" aria-labelledby="why-heading">
+      <div class="container">
+        <div class="why-grid">
+          <div class="why-image-wrap sr">
+            <div class="why-image">[ Clinic / Care Photo ]</div>
+            <div class="why-stat-card" aria-hidden="true">
+              <div class="why-stat-num">100%</div>
+              <div class="why-stat-label" data-i18n="why-stat-label">
+                Covered under<br />Manitoba Health (MHSCP)
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span class="tag sr" data-i18n="sec-why-tag"
+              >Why Choose Rehoboth</span
+            >
+            <h2
+              class="section-title sr sr-d1"
+              id="why-heading"
+              data-i18n="sec-why-title"
+            >
+              Care you can<br /><em>count on</em>
+            </h2>
+            <p class="section-desc sr sr-d2" data-i18n="sec-why-desc">
+              We built Rehoboth Clinic around one belief every patient deserves
+              to feel heard, respected, and well cared for, every visit.
+            </p>
+
+            <div class="why-points">
+              <div class="why-point sr sr-d1">
+                <div class="why-point-icon">✅</div>
+                <div>
+                  <h4 data-i18n="why1-title">Accepting New Patients</h4>
+                  <p data-i18n="why1-desc">
+                    We warmly welcome patients of all ages looking for a trusted
+                    family doctor in Winnipeg.
+                  </p>
+                </div>
+              </div>
+              <div class="why-point sr sr-d2">
+                <div class="why-point-icon">🌐</div>
+                <div>
+                  <h4 data-i18n="why2-title">
+                    Bilingual Care English & French
+                  </h4>
+                  <p data-i18n="why2-desc">
+                    Our team provides care in both official languages so every
+                    patient feels at home.
+                  </p>
+                </div>
+              </div>
+              <div class="why-point sr sr-d3">
+                <div class="why-point-icon">💻</div>
+                <div>
+                  <h4 data-i18n="why3-title">Seamless Online Booking</h4>
+                  <p data-i18n="why3-desc">
+                    Book an appointment in minutes no phone queues, no
+                    paperwork, available 24/7.
+                  </p>
+                </div>
+              </div>
+              <div class="why-point sr sr-d4">
+                <div class="why-point-icon">❤️</div>
+                <div>
+                  <h4 data-i18n="why4-title">Compassionate Expert Team</h4>
+                  <p data-i18n="why4-desc">
+                    Every visit is met with patience, dignity, and genuine
+                    medical expertise.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TEAM ── -->
+    <section
+      class="section section-bg"
+      id="team"
+      aria-labelledby="team-heading"
+    >
+      <div class="container">
+        <div class="section-header center">
+          <span class="tag sr" data-i18n="sec-team-tag">Our Physicians</span>
+          <h2
+            class="section-title sr sr-d1"
+            id="team-heading"
+            data-i18n="sec-team-title"
+          >
+            Meet your <em>care team</em>
+          </h2>
+          <p class="section-desc sr sr-d2" data-i18n="sec-team-desc">
+            Two dedicated physicians. One shared commitment your health and
+            recovery.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <article class="doctor-card sr" aria-label="Dr. Lorem Ipsum">
+            <div class="doctor-photo">
+              <div class="doctor-photo-ph">
+                <span>👩‍⚕️</span>
+                Doctor photo goes here
+              </div>
+              <div class="doctor-badge" data-i18n="doc1-badge">
+                Family Medicine
+              </div>
+            </div>
+            <div class="doctor-body">
+              <h3 data-i18n="doc1-name">Dr. Lorem Ipsum</h3>
+              <div class="doctor-cred" data-i18n="doc1-cred">
+                MD, CCFP Family Physician
+              </div>
+              <p data-i18n="doc1-desc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Committed to preventive care and building long-term
+                relationships rooted in trust, empathy, and clinical excellence.
+              </p>
+              <div class="doctor-tags">
+                <span class="chip">Family Medicine</span>
+                <span class="chip">Chronic Disease</span>
+                <span class="chip">Preventive Care</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="doctor-card sr sr-d1" aria-label="Dr. Dolor Sit">
+            <div class="doctor-photo">
+              <div class="doctor-photo-ph">
+                <span>👨‍⚕️</span>
+                Doctor photo goes here
+              </div>
+              <div class="doctor-badge" data-i18n="doc2-badge">
+                General Practice
+              </div>
+            </div>
+            <div class="doctor-body">
+              <h3 data-i18n="doc2-name">Dr. Dolor Sit</h3>
+              <div class="doctor-cred" data-i18n="doc2-cred">
+                MD, CCFP General Practitioner
+              </div>
+              <p data-i18n="doc2-desc">
+                Pellentesque habitant morbi tristique. Passionate about walk-in
+                care and accessible medicine ensuring every patient leaves with
+                clarity, confidence, and a clear path forward.
+              </p>
+              <div class="doctor-tags">
+                <span class="chip">Walk-in Care</span>
+                <span class="chip">Acute Illness</span>
+                <span class="chip">Bilingual</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW TO BOOK ── -->
+    <section class="section" id="book" aria-labelledby="book-heading">
+      <div class="container">
+        <div class="section-header">
+          <span class="tag sr" data-i18n="sec-book-tag">Appointments</span>
+          <h2
+            class="section-title sr sr-d1"
+            id="book-heading"
+            data-i18n="sec-book-title"
+          >
+            Booking is <em>simple</em>
+          </h2>
+          <p class="section-desc sr sr-d2" data-i18n="sec-book-desc">
+            Three steps. Done in minutes. No hold music, no hassle available
+            online anytime.
+          </p>
+        </div>
+
+        <div class="steps-grid sr">
+          <div class="step-block">
+            <div class="step-number" aria-hidden="true">01</div>
+            <h4 data-i18n="step1-title">Choose a Service</h4>
+            <p data-i18n="step1-desc">
+              Select walk-in, family medicine, or a general check-up based on
+              your needs.
+            </p>
+          </div>
+          <div class="step-block">
+            <div class="step-number" aria-hidden="true">02</div>
+            <h4 data-i18n="step2-title">Pick a Time</h4>
+            <p data-i18n="step2-desc">
+              Browse available slots and choose a date and time that works for
+              your schedule.
+            </p>
+          </div>
+          <div class="step-block">
+            <div class="step-number" aria-hidden="true">03</div>
+            <h4 data-i18n="step3-title">Confirm Online</h4>
+            <p data-i18n="step3-desc">
+              Enter your Manitoba Health Card details, confirm, and you're all
+              set.
+            </p>
+          </div>
+        </div>
+
+        <div class="book-cta-row sr sr-d1">
+          <button class="btn btn-primary btn-arrow" data-i18n="book-btn">
+            Book Your Appointment
+          </button>
+          <p class="book-note" data-i18n="book-note">
+            Prefer to call? <strong>(204) 555‑0100</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── RESOURCES ── -->
+    <section
+      class="section section-bg"
+      id="resources"
+      aria-labelledby="res-heading"
+    >
+      <div class="container">
+        <div class="section-header center">
+          <span class="tag sr" data-i18n="sec-res-tag">Patient Resources</span>
+          <h2
+            class="section-title sr sr-d1"
+            id="res-heading"
+            data-i18n="sec-res-title"
+          >
+            Everything you <em>need to know</em>
+          </h2>
+          <p class="section-desc sr sr-d2" data-i18n="sec-res-desc">
+            Helpful information for new and existing patients at Rehoboth
+            Clinic.
+          </p>
+        </div>
+
+        <div class="resources-grid">
+          <div class="res-card sr">
+            <div class="res-emoji">📋</div>
+            <h4 data-i18n="res1-title">New Patient Intake Form</h4>
+            <p data-i18n="res1-desc">
+              Complete your intake form before your first visit to save time at
+              the clinic.
+            </p>
+            <a href="#" class="res-link" data-i18n="res1-link"
+              >Download PDF →</a
+            >
+          </div>
+          <div class="res-card sr sr-d1">
+            <div class="res-emoji">💳</div>
+            <h4 data-i18n="res2-title">Manitoba Health Card</h4>
+            <p data-i18n="res2-desc">
+              Most services are covered under MHSCP. Bring your health card to
+              every visit. Don't have one yet?
+            </p>
+            <a
+              href="https://www.gov.mb.ca/health/mhscp/"
+              target="_blank"
+              rel="noopener"
+              class="res-link"
+              data-i18n="res2-link"
+              >Register at Gov.mb.ca →</a
+            >
+          </div>
+          <div class="res-card sr sr-d2">
+            <div class="res-emoji">❓</div>
+            <h4 data-i18n="res3-title">Frequently Asked Questions</h4>
+            <p data-i18n="res3-desc">
+              Are you accepting patients? What is covered? Do I need a referral?
+              Find answers here.
+            </p>
+            <a href="#" class="res-link" data-i18n="res3-link">View FAQs →</a>
+          </div>
+          <div class="res-card sr sr-d3">
+            <div class="res-emoji">📞</div>
+            <h4 data-i18n="res4-title">Health Links 24/7</h4>
+            <p data-i18n="res4-desc">
+              Free nurse-advice line available around the clock, every day of
+              the year, province-wide.
+            </p>
+            <a href="tel:18883159257" class="res-link" data-i18n="res4-link"
+              >1‑888‑315‑9257 →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section
+      class="contact-section"
+      id="contact"
+      aria-labelledby="contact-heading"
+    >
+      <div class="container contact-inner">
+        <span class="tag sr" data-i18n="sec-contact-tag">Get in Touch</span>
+        <h2
+          class="section-title sr sr-d1"
+          id="contact-heading"
+          data-i18n="sec-contact-title"
+        >
+          We're here <em>for you</em>
+        </h2>
+        <p class="section-desc sr sr-d2" data-i18n="sec-contact-desc">
+          Visit us, call us, or book online. Our friendly team is always ready
+          to help.
+        </p>
+
+        <div class="contact-tiles">
+          <div class="contact-tile sr">
+            <span class="contact-tile-icon">📍</span>
+            <div>
+              <span class="contact-tile-label" data-i18n="info-location-lbl"
+                >Address</span
+              >
+              <span class="contact-tile-val" data-i18n="info-location-val"
+                >123 Lorem Street<br />Winnipeg, MB R3C 0A0</span
+              >
+            </div>
+          </div>
+          <div class="contact-tile sr sr-d1">
+            <span class="contact-tile-icon">📞</span>
+            <div>
+              <span class="contact-tile-label" data-i18n="info-phone-lbl"
+                >Phone</span
+              >
+              <span class="contact-tile-val" data-i18n="info-phone-val"
+                >(204) 555‑0100</span
+              >
+            </div>
+          </div>
+          <div class="contact-tile sr sr-d2">
+            <span class="contact-tile-icon">📧</span>
+            <div>
+              <span class="contact-tile-label">Email</span>
+              <span class="contact-tile-val">info@rehobothclinic.ca</span>
+            </div>
+          </div>
+          <div class="contact-tile sr sr-d3">
+            <span class="contact-tile-icon">🕒</span>
+            <div>
+              <span class="contact-tile-label" data-i18n="info-hours-lbl"
+                >Hours</span
+              >
+              <span class="contact-tile-val" data-i18n="info-hours-val"
+                >Mon–Fri: 8 am–6 pm<br />Sat: 9 am–2 pm</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-contact sr" data-i18n="contact-btn">
+          Book an Appointment
+        </button>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer>
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <p data-i18n="footer-desc">
+              Your Place of Rest and Recovery. Providing compassionate,
+              patient-centred medical care to individuals and families in
+              Winnipeg, Manitoba.
+            </p>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer-col1">Services</div>
+            <a href="#services" data-i18n="footer-svc1">Walk-in Clinic</a>
+            <a href="#services" data-i18n="footer-svc2">Family Medicine</a>
+            <a href="#services" data-i18n="footer-svc3">General Practice</a>
+            <a href="#book" data-i18n="footer-svc4">New Patients</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer-col2">Clinic</div>
+            <a href="#team" data-i18n="footer-cl1">Our Team</a>
+            <a href="#book" data-i18n="footer-cl2">Appointments</a>
+            <a href="#resources" data-i18n="footer-cl3">Patient Resources</a>
+            <a href="#contact" data-i18n="footer-cl4">Contact</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title" data-i18n="footer-col3">
+              Resources
+            </div>
+            <a href="#" data-i18n="footer-r1">New Patient Form</a>
+            <a
+              href="https://www.gov.mb.ca/health/mhscp/"
+              target="_blank"
+              rel="noopener"
+              data-i18n="footer-r2"
+              >Manitoba Health</a
+            >
+            <a href="tel:18883159257" data-i18n="footer-r3"
+              >Health Links 24/7</a
+            >
+            <a href="#" data-i18n="footer-r4">FAQs</a>
+            <a href="#" data-i18n="footer-r5">Français</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span data-i18n="footer-copy"
+            >© 2025 Rehoboth Clinic. All rights reserved.</span
+          >
+          <div class="footer-bottom-links">
+            <a href="#" data-i18n="footer-privacy">Privacy Policy</a>
+            <a href="#" data-i18n="footer-terms">Terms of Use</a>
+            <a href="#" data-i18n="footer-access">Accessibility</a>
+          </div>
+          <span data-i18n="footer-lang">🌐 English / Français</span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+    <script>
+      (function () {
+        "use strict";
+
+        /* ════════════════════════════════
+     TRANSLATIONS
+  ════════════════════════════════ */
+        var T = {
+          en: {
+            /* Emergency */
+            emergency:
+              '⚠ \u00a0<strong>Medical Emergency?</strong> \u00a0Call <strong>911</strong> immediately or go to your nearest Emergency Room \u00a0·\u00a0 Health Links 24/7: <a href="tel:18883159257"><strong>1‑888‑315‑9257</strong></a>',
+            /* Nav */
+            "nav-services": "Services",
+            "nav-team": "Our Team",
+            "nav-appointments": "Appointments",
+            "nav-resources": "Resources",
+            "nav-contact": "Contact",
+            "nav-book": "Book Now",
+            "nav-tagline": "Winnipeg, Manitoba",
+            /* Hero */
+            "hero-badge": "Now Accepting New Patients",
+            "hero-title":
+              "Your Place of<br/><em>Rest</em> and<br/><strong>Recovery</strong>",
+            "hero-desc":
+              "Compassionate, patient-centred care for individuals and families across Winnipeg, Manitoba. Walk-in and family medicine services  all covered by Manitoba Health.",
+            "hero-btn-book": "Book an Appointment",
+            "hero-btn-services": "Our Services",
+            "trust-physicians": "2 Dedicated<br/>Physicians",
+            "trust-health": "MB Health Card<br/>Accepted",
+            "trust-bilingual": "EN / FR<br/>Bilingual Care",
+            "hf-label": "Walk-in Clinic",
+            "hf-value": "No appointment needed",
+            "hf-pill": "Open Today",
+            /* Info bar */
+            "info-location-lbl": "Location",
+            "info-location-val": "123 Lorem Street<br/>Winnipeg, MB",
+            "info-phone-lbl": "Phone",
+            "info-phone-val": "(204) 555‑0100",
+            "info-hours-lbl": "Hours",
+            "info-hours-val": "Mon – Fri: 8 am – 6 pm<br/>Sat: 9 am – 2 pm",
+            "info-coverage-lbl": "Coverage",
+            "info-coverage-val": "Manitoba Health Card<br/>(MHSCP) Accepted",
+            /* Services */
+            "sec-services-tag": "What We Offer",
+            "sec-services-title":
+              "Comprehensive care,<br/><em>close to home</em>",
+            "sec-services-desc":
+              "From same-day walk-in visits to long-term family medicine  we're here for every stage of your health journey.",
+            "svc1-title": "Walk-in Clinic",
+            "svc1-desc":
+              "No appointment required. Prompt, quality care for non-emergency conditions including colds, infections, minor injuries, and acute illness during clinic hours.",
+            "svc2-title": "Family Medicine",
+            "svc2-desc":
+              "Build a long-term relationship with your own physician. Continuous, comprehensive care for your whole family  from newborns to seniors.",
+            "svc3-title": "General Practice",
+            "svc3-desc":
+              "Preventive check-ups, chronic disease management, prescription renewals, lab referrals, and specialist coordination  all in one place.",
+            /* Why */
+            "sec-why-tag": "Why Choose Rehoboth",
+            "sec-why-title": "Care you can<br/><em>count on</em>",
+            "sec-why-desc":
+              "We built Rehoboth Clinic around one belief  every patient deserves to feel heard, respected, and well cared for, every visit.",
+            "why-stat-label": "Covered under<br/>Manitoba Health (MHSCP)",
+            "why1-title": "Accepting New Patients",
+            "why1-desc":
+              "We warmly welcome patients of all ages looking for a trusted family doctor in Winnipeg.",
+            "why2-title": "Bilingual Care  English & French",
+            "why2-desc":
+              "Our team provides care in both official languages so every patient feels at home.",
+            "why3-title": "Seamless Online Booking",
+            "why3-desc":
+              "Book an appointment in minutes  no phone queues, no paperwork, available 24/7.",
+            "why4-title": "Compassionate Expert Team",
+            "why4-desc":
+              "Every visit is met with patience, dignity, and genuine medical expertise.",
+            /* Team */
+            "sec-team-tag": "Our Physicians",
+            "sec-team-title": "Meet your <em>care team</em>",
+            "sec-team-desc":
+              "Two dedicated physicians. One shared commitment  your health and recovery.",
+            "doc1-badge": "Family Medicine",
+            "doc1-name": "Dr. Lorem Ipsum",
+            "doc1-cred": "MD, CCFP  Family Physician",
+            "doc1-desc":
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Committed to preventive care and building long-term relationships rooted in trust, empathy, and clinical excellence.",
+            "doc2-badge": "General Practice",
+            "doc2-name": "Dr. Dolor Sit",
+            "doc2-cred": "MD, CCFP  General Practitioner",
+            "doc2-desc":
+              "Pellentesque habitant morbi tristique. Passionate about walk-in care and accessible medicine  ensuring every patient leaves with clarity, confidence, and a clear path forward.",
+            /* Book */
+            "sec-book-tag": "Appointments",
+            "sec-book-title": "Booking is <em>simple</em>",
+            "sec-book-desc":
+              "Three steps. Done in minutes. No hold music, no hassle  available online anytime.",
+            "step1-title": "Choose a Service",
+            "step1-desc":
+              "Select walk-in, family medicine, or a general check-up based on your needs.",
+            "step2-title": "Pick a Time",
+            "step2-desc":
+              "Browse available slots and choose a date and time that works for your schedule.",
+            "step3-title": "Confirm Online",
+            "step3-desc":
+              "Enter your Manitoba Health Card details, confirm, and you're all set.",
+            "book-btn": "Book Your Appointment",
+            "book-note": "Prefer to call? <strong>(204) 555‑0100</strong>",
+            /* Resources */
+            "sec-res-tag": "Patient Resources",
+            "sec-res-title": "Everything you <em>need to know</em>",
+            "sec-res-desc":
+              "Helpful information for new and existing patients at Rehoboth Clinic.",
+            "res1-title": "New Patient Intake Form",
+            "res1-desc":
+              "Complete your intake form before your first visit to save time at the clinic.",
+            "res1-link": "Download PDF →",
+            "res2-title": "Manitoba Health Card",
+            "res2-desc":
+              "Most services are covered under MHSCP. Bring your health card to every visit. Don't have one yet?",
+            "res2-link": "Register at Gov.mb.ca →",
+            "res3-title": "Frequently Asked Questions",
+            "res3-desc":
+              "Are you accepting patients? What is covered? Do I need a referral? Find answers here.",
+            "res3-link": "View FAQs →",
+            "res4-title": "Health Links 24/7",
+            "res4-desc":
+              "Free nurse-advice line available around the clock, every day of the year, province-wide.",
+            "res4-link": "1‑888‑315‑9257 →",
+            /* Contact */
+            "sec-contact-tag": "Get in Touch",
+            "sec-contact-title": "We're here <em>for you</em>",
+            "sec-contact-desc":
+              "Visit us, call us, or book online. Our friendly team is always ready to help.",
+            "contact-btn": "Book an Appointment",
+            /* Footer */
+            "footer-desc":
+              "Your Place of Rest and Recovery. Providing compassionate, patient-centred medical care to individuals and families in Winnipeg, Manitoba.",
+            "footer-col1": "Services",
+            "footer-col2": "Clinic",
+            "footer-col3": "Resources",
+            "footer-svc1": "Walk-in Clinic",
+            "footer-svc2": "Family Medicine",
+            "footer-svc3": "General Practice",
+            "footer-svc4": "New Patients",
+            "footer-cl1": "Our Team",
+            "footer-cl2": "Appointments",
+            "footer-cl3": "Patient Resources",
+            "footer-cl4": "Contact",
+            "footer-r1": "New Patient Form",
+            "footer-r2": "Manitoba Health",
+            "footer-r3": "Health Links 24/7",
+            "footer-r4": "FAQs",
+            "footer-r5": "Français",
+            "footer-copy": "© 2025 Rehoboth Clinic. All rights reserved.",
+            "footer-privacy": "Privacy Policy",
+            "footer-terms": "Terms of Use",
+            "footer-access": "Accessibility",
+            "footer-lang": "🌐 English / Français",
+          },
+          fr: {
+            /* Emergency */
+            emergency:
+              '⚠ \u00a0<strong>Urgence médicale?</strong> \u00a0Appelez le <strong>911</strong> immédiatement ou rendez-vous aux urgences les plus proches \u00a0·\u00a0 Info-Santé 24/7\u00a0: <a href="tel:18883159257"><strong>1‑888‑315‑9257</strong></a>',
+            /* Nav */
+            "nav-services": "Services",
+            "nav-team": "Notre équipe",
+            "nav-appointments": "Rendez-vous",
+            "nav-resources": "Ressources",
+            "nav-contact": "Contact",
+            "nav-book": "Réserver",
+            "nav-tagline": "Winnipeg, Manitoba",
+            /* Hero */
+            "hero-badge": "Acceptons de nouveaux patients",
+            "hero-title":
+              "Votre lieu de<br/><em>repos</em> et de<br/><strong>rétablissement</strong>",
+            "hero-desc":
+              "Des soins médicaux empreints de compassion pour les individus et les familles de Winnipeg, au Manitoba. Services de clinique sans rendez-vous et médecine familiale  couverts par Santé Manitoba.",
+            "hero-btn-book": "Prendre rendez-vous",
+            "hero-btn-services": "Nos services",
+            "trust-physicians": "2 médecins<br/>dévoués",
+            "trust-health": "Carte Santé MB<br/>acceptée",
+            "trust-bilingual": "Soins bilingues<br/>FR / EN",
+            "hf-label": "Clinique sans rendez-vous",
+            "hf-value": "Aucun rendez-vous requis",
+            "hf-pill": "Ouvert aujourd'hui",
+            /* Info bar */
+            "info-location-lbl": "Adresse",
+            "info-location-val": "123 rue Lorem<br/>Winnipeg, MB",
+            "info-phone-lbl": "Téléphone",
+            "info-phone-val": "(204) 555‑0100",
+            "info-hours-lbl": "Heures",
+            "info-hours-val":
+              "Lun – Ven\u00a0: 8 h – 18 h<br/>Sam\u00a0: 9 h – 14 h",
+            "info-coverage-lbl": "Couverture",
+            "info-coverage-val": "Carte Santé Manitoba<br/>(RSSM) acceptée",
+            /* Services */
+            "sec-services-tag": "Ce que nous offrons",
+            "sec-services-title":
+              "Des soins complets,<br/><em>près de chez vous</em>",
+            "sec-services-desc":
+              "De la visite sans rendez-vous à la médecine familiale à long terme  nous accompagnons chaque étape de votre parcours de santé.",
+            "svc1-title": "Clinique sans rendez-vous",
+            "svc1-desc":
+              "Aucun rendez-vous nécessaire. Soins rapides et de qualité pour les problèmes non urgents\u00a0: rhumes, infections, blessures mineures et maladies aiguës.",
+            "svc2-title": "Médecine familiale",
+            "svc2-desc":
+              "Développez une relation durable avec votre propre médecin. Soins continus et complets pour toute votre famille  des nouveau-nés aux aînés.",
+            "svc3-title": "Médecine générale",
+            "svc3-desc":
+              "Bilans préventifs, gestion des maladies chroniques, renouvellements d'ordonnances, demandes de laboratoire et coordination avec les spécialistes  tout au même endroit.",
+            /* Why */
+            "sec-why-tag": "Pourquoi choisir Rehoboth",
+            "sec-why-title": "Des soins sur<br/><em>lesquels compter</em>",
+            "sec-why-desc":
+              "Nous avons fondé la Clinique Rehoboth sur une conviction\u00a0: chaque patient mérite d'être entendu, respecté et bien soigné, à chaque visite.",
+            "why-stat-label": "Couvert par<br/>Santé Manitoba (RSSM)",
+            "why1-title": "Accepte de nouveaux patients",
+            "why1-desc":
+              "Nous accueillons chaleureusement les patients de tout âge à la recherche d'un médecin de famille de confiance à Winnipeg.",
+            "why2-title": "Soins bilingues  français et anglais",
+            "why2-desc":
+              "Notre équipe offre des soins dans les deux langues officielles pour que chaque patient se sente chez lui.",
+            "why3-title": "Prise de rendez-vous en ligne simplifiée",
+            "why3-desc":
+              "Prenez rendez-vous en quelques minutes  sans attente téléphonique, sans paperasse, disponible 24 h/24.",
+            "why4-title": "Équipe experte et bienveillante",
+            "why4-desc":
+              "Chaque visite est marquée par la patience, la dignité et une véritable expertise médicale.",
+            /* Team */
+            "sec-team-tag": "Nos médecins",
+            "sec-team-title": "Rencontrez votre <em>équipe soignante</em>",
+            "sec-team-desc":
+              "Deux médecins dévoués. Un engagement commun  votre santé et votre rétablissement.",
+            "doc1-badge": "Médecine familiale",
+            "doc1-name": "Dr Lorem Ipsum",
+            "doc1-cred": "MD, CCMF  Médecin de famille",
+            "doc1-desc":
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Engagé dans les soins préventifs et dans la construction de relations durables fondées sur la confiance et l'excellence clinique.",
+            "doc2-badge": "Médecine générale",
+            "doc2-name": "Dr Dolor Sit",
+            "doc2-cred": "MD, CCMF  Médecin généraliste",
+            "doc2-desc":
+              "Pellentesque habitant morbi tristique. Passionné par les soins sans rendez-vous et la médecine accessible  s'assurant que chaque patient repart avec clarté et confiance.",
+            /* Book */
+            "sec-book-tag": "Rendez-vous",
+            "sec-book-title": "Prendre rendez-vous,<br/><em>c'est simple</em>",
+            "sec-book-desc":
+              "Trois étapes. En quelques minutes. Sans attente  disponible en ligne à tout moment.",
+            "step1-title": "Choisissez un service",
+            "step1-desc":
+              "Sélectionnez une visite sans rendez-vous, la médecine familiale ou un bilan général selon vos besoins.",
+            "step2-title": "Choisissez une heure",
+            "step2-desc":
+              "Parcourez les créneaux disponibles et choisissez une date et une heure qui vous conviennent.",
+            "step3-title": "Confirmez en ligne",
+            "step3-desc":
+              "Entrez les informations de votre Carte Santé Manitoba, confirmez  c'est tout.",
+            "book-btn": "Prendre rendez-vous",
+            "book-note":
+              "Vous préférez appeler\u00a0? <strong>(204) 555‑0100</strong>",
+            /* Resources */
+            "sec-res-tag": "Ressources pour les patients",
+            "sec-res-title": "Tout ce que vous <em>devez savoir</em>",
+            "sec-res-desc":
+              "Informations utiles pour les nouveaux patients et les patients existants de la Clinique Rehoboth.",
+            "res1-title": "Formulaire d'admission",
+            "res1-desc":
+              "Remplissez votre formulaire avant votre première visite pour gagner du temps à la clinique.",
+            "res1-link": "Télécharger le PDF →",
+            "res2-title": "Carte Santé Manitoba",
+            "res2-desc":
+              "La plupart des services sont couverts par le RSSM. Apportez votre carte à chaque visite. Pas encore de carte\u00a0?",
+            "res2-link": "S'inscrire sur Gov.mb.ca →",
+            "res3-title": "Foire aux questions",
+            "res3-desc":
+              "Acceptez-vous de nouveaux patients\u00a0? Qu'est-ce qui est couvert\u00a0? Ai-je besoin d'une référence\u00a0? Trouvez vos réponses ici.",
+            "res3-link": "Voir la FAQ →",
+            "res4-title": "Info-Santé 24/7",
+            "res4-desc":
+              "Ligne de conseils infirmiers gratuite, disponible 24 h/24, 7 j/7, partout dans la province.",
+            "res4-link": "1‑888‑315‑9257 →",
+            /* Contact */
+            "sec-contact-tag": "Nous contacter",
+            "sec-contact-title": "Nous sommes là <em>pour vous</em>",
+            "sec-contact-desc":
+              "Visitez-nous, appelez-nous ou réservez en ligne. Notre équipe est toujours prête à vous aider.",
+            "contact-btn": "Prendre rendez-vous",
+            /* Footer */
+            "footer-desc":
+              "Votre lieu de repos et de rétablissement. Soins médicaux bienveillants et centrés sur le patient pour les individus et les familles de Winnipeg, au Manitoba.",
+            "footer-col1": "Services",
+            "footer-col2": "Clinique",
+            "footer-col3": "Ressources",
+            "footer-svc1": "Clinique sans rendez-vous",
+            "footer-svc2": "Médecine familiale",
+            "footer-svc3": "Médecine générale",
+            "footer-svc4": "Nouveaux patients",
+            "footer-cl1": "Notre équipe",
+            "footer-cl2": "Rendez-vous",
+            "footer-cl3": "Ressources patients",
+            "footer-cl4": "Contact",
+            "footer-r1": "Formulaire d'admission",
+            "footer-r2": "Santé Manitoba",
+            "footer-r3": "Info-Santé 24/7",
+            "footer-r4": "FAQ",
+            "footer-r5": "English",
+            "footer-copy": "© 2025 Clinique Rehoboth. Tous droits réservés.",
+            "footer-privacy": "Politique de confidentialité",
+            "footer-terms": "Conditions d'utilisation",
+            "footer-access": "Accessibilité",
+            "footer-lang": "🌐 English / Français",
+          },
+        };
+
+        /* ════════════════════════════════
+     APPLY TRANSLATIONS
+  ════════════════════════════════ */
+        function applyLang(lang) {
+          var dict = T[lang];
+          document.querySelectorAll("[data-i18n]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n");
+            if (dict[key] !== undefined) {
+              el.innerHTML = dict[key];
+            }
+          });
+          /* Update html lang attribute */
+          document.documentElement.lang = lang;
+          /* Update page title */
+          document.title =
+            lang === "fr"
+              ? "Clinique Rehoboth  Votre lieu de repos et de rétablissement"
+              : "Rehoboth Clinic  Your Place of Rest and Recovery";
+        }
+
+        /* ════════════════════════════════
+     LANGUAGE SWITCHER
+  ════════════════════════════════ */
+        var currentLang = "en";
+
+        window.setLang = function (btn) {
+          var lang = btn.textContent.trim().toLowerCase();
+          if (lang === currentLang) return;
+          currentLang = lang;
+
+          /* Sync all lang buttons across nav and mobile menu */
+          document
+            .querySelectorAll(".lang-switcher button, .mobile-lang button")
+            .forEach(function (b) {
+              b.classList.toggle(
+                "active",
+                b.textContent.trim().toLowerCase() === lang,
+              );
+            });
+
+          applyLang(lang);
+        };
+
+        /* ════════════════════════════════
+     EMERGENCY POPUP
+  ════════════════════════════════ */
+        var overlay = document.getElementById("emergencyOverlay");
+        var closeBtn = document.getElementById("emergencyClose");
+        var dismiss = document.getElementById("emergencyDismiss");
+
+        function closeEmergency() {
+          overlay.classList.add("hide");
+          document.body.style.overflow = "";
+        }
+
+        /* Prevent scroll while popup is open */
+        document.body.style.overflow = "hidden";
+
+        closeBtn.addEventListener("click", closeEmergency);
+        dismiss.addEventListener("click", closeEmergency);
+        overlay.addEventListener("click", function (e) {
+          if (e.target === overlay) closeEmergency();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeEmergency();
+        });
+        var nav = document.getElementById("mainNav");
+        window.addEventListener(
+          "scroll",
+          function () {
+            nav.classList.toggle("scrolled", window.scrollY > 20);
+          },
+          { passive: true },
+        );
+
+        /* ════════════════════════════════
+     MOBILE MENU
+  ════════════════════════════════ */
+        var hamburger = document.getElementById("hamburger");
+        var mobileNav = document.getElementById("mobileNav");
+
+        hamburger.addEventListener("click", function () {
+          var isOpen = mobileNav.classList.toggle("open");
+          hamburger.classList.toggle("open", isOpen);
+          hamburger.setAttribute("aria-expanded", String(isOpen));
+          document.body.style.overflow = isOpen ? "hidden" : "";
+        });
+
+        window.closeMenu = function () {
+          mobileNav.classList.remove("open");
+          hamburger.classList.remove("open");
+          hamburger.setAttribute("aria-expanded", "false");
+          document.body.style.overflow = "";
+        };
+
+        document.addEventListener("click", function (e) {
+          if (
+            mobileNav.classList.contains("open") &&
+            !mobileNav.contains(e.target) &&
+            !hamburger.contains(e.target)
+          ) {
+            closeMenu();
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeMenu();
+        });
+
+        /* ════════════════════════════════
+     SCROLL REVEAL
+  ════════════════════════════════ */
+        var srEls = document.querySelectorAll(".sr");
+        if ("IntersectionObserver" in window) {
+          var observer = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("in");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1 },
+          );
+          srEls.forEach(function (el) {
+            observer.observe(el);
+          });
+        } else {
+          srEls.forEach(function (el) {
+            el.classList.add("in");
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
