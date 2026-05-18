@@ -175,8 +175,8 @@
         inset: 0;
         z-index: 2000;
         background: rgba(20, 28, 38, 0.55);
-        backdrop-filter: blur(4px);
         -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -348,8 +348,8 @@
 
       .nav {
         background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px) saturate(180%);
         -webkit-backdrop-filter: blur(20px) saturate(180%);
+        backdrop-filter: blur(20px) saturate(180%);
         border-bottom: 1px solid rgba(221, 230, 240, 0.7);
         transition: box-shadow 0.3s;
       }
@@ -1039,6 +1039,7 @@
         font-weight: 700;
         line-height: 1;
         color: var(--border);
+        -webkit-user-select: none;
         user-select: none;
         transition: color 0.3s;
       }
@@ -1223,6 +1224,7 @@
         bottom: 14px;
         left: 14px;
         background: rgba(255, 255, 255, 0.92);
+        -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
         border-radius: 100px;
         padding: 5px 14px;
